@@ -16,7 +16,7 @@ endif
 badd +2 src/main/java/com/example/myapp/model/Department.java
 badd +37 pom.xml
 badd +1 ~/.config/nvim/lua/custom/init.lua
-badd +26 src/main/resources/templates/layout/layout.html
+badd +1 src/main/resources/templates/layout/layout.html
 badd +43 ~/.config/nvim/lua/custom/mappings/init.lua
 badd +7 ~/.config/nvim/lua/custom/script/init.lua
 badd +10 ~/.config/nvim/lua/custom/plugins/configs/lspconfig.lua
@@ -25,7 +25,7 @@ badd +1 ~/.config/nvim/lua/custom/plugins/configs/prettier.lua
 badd +48 src/main/resources/templates/index.html
 badd +1 ~/.config/nvim/lua/custom/plugins/configs/null-ls.lua
 badd +1 src/main/resources/templates/form.html
-badd +52 src/main/java/com/example/myapp/controller/EmployeeController.java
+badd +1 src/main/java/com/example/myapp/controller/EmployeeController.java
 badd +69 ~/workspace/test.html
 badd +1 src/main/resources/application.properties
 badd +22 ~/.config/nvim/lua/custom/plugins/override/mason-setup.lua
@@ -52,18 +52,34 @@ badd +2 src/main/resources/templates/fragments/sidebar.html
 badd +36 src/main/resources/static/css/app.css
 badd +52 ~/spring-boot-intro-2.7/spring-jpa3/src/main/resources/static/css/app.css
 badd +1 NERD_tree_4
-badd +1 ~/spring-boot-intro-2.7/spring-jpa3/src/main/resources/templates/index.html
+badd +53 ~/spring-boot-intro-2.7/spring-jpa3/src/main/resources/templates/index.html
 badd +51 target/classes/templates/index.html
 badd +1 ~/workspace/myapp
 argglobal
 %argdel
 set lines=38 columns=174
 tabnew +setlocal\ bufhidden=wipe
-tabnew +setlocal\ bufhidden=wipe
 tabrewind
-edit src/main/resources/static/css/app.css
+edit src/main/java/com/example/myapp/controller/EmployeeController.java
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 86 + 87) / 174)
+exe 'vert 2resize ' . ((&columns * 87 + 87) / 174)
 argglobal
-balt src/main/resources/templates/index.html
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -74,36 +90,18 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 36 - ((18 * winheight(0) + 17) / 35)
+let s:l = 47 - ((30 * winheight(0) + 17) / 35)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 36
-normal! 026|
-tabnext
-edit ~/spring-boot-intro-2.7/spring-jpa3/src/main/resources/templates/index.html
-argglobal
-balt ~/spring-boot-intro-2.7/spring-jpa3/src/main/resources/static/css/app.css
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 53 - ((18 * winheight(0) + 17) / 35)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 53
+keepjumps 47
 normal! 0
-tabnext
-edit ~/.config/nvim/lua/custom/plugins/configs/lspconfig.lua
+wincmd w
 argglobal
-balt ~/.config/nvim/lua/custom/plugins/configs/null-ls.lua
+if bufexists(fnamemodify("src/main/resources/templates/index.html", ":p")) | buffer src/main/resources/templates/index.html | else | edit src/main/resources/templates/index.html | endif
+if &buftype ==# 'terminal'
+  silent file src/main/resources/templates/index.html
+endif
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -114,12 +112,80 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 10 - ((9 * winheight(0) + 17) / 35)
+let s:l = 1 - ((0 * winheight(0) + 17) / 35)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 10
-normal! 018|
+keepjumps 1
+normal! 0
+wincmd w
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 86 + 87) / 174)
+exe 'vert 2resize ' . ((&columns * 87 + 87) / 174)
+tabnext
+edit src/main/resources/templates/layout/layout.html
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 87 + 87) / 174)
+exe 'vert 2resize ' . ((&columns * 86 + 87) / 174)
+argglobal
+balt ~/spring-boot-intro-2.7/spring-jpa3/src/main/resources/templates/index.html
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 1 - ((0 * winheight(0) + 17) / 35)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 0
+wincmd w
+argglobal
+if bufexists(fnamemodify("src/main/resources/templates/fragments/sidebar.html", ":p")) | buffer src/main/resources/templates/fragments/sidebar.html | else | edit src/main/resources/templates/fragments/sidebar.html | endif
+if &buftype ==# 'terminal'
+  silent file src/main/resources/templates/fragments/sidebar.html
+endif
+balt src/main/resources/templates/layout/layout.html
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 1 - ((0 * winheight(0) + 17) / 35)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 0
+wincmd w
+exe 'vert 1resize ' . ((&columns * 87 + 87) / 174)
+exe 'vert 2resize ' . ((&columns * 86 + 87) / 174)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -127,6 +193,8 @@ endif
 unlet! s:wipebuf
 set winheight=1 winwidth=20
 let &shortmess = s:shortmess_save
+let &winminheight = s:save_winminheight
+let &winminwidth = s:save_winminwidth
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)

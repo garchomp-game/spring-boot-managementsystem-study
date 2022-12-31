@@ -16,24 +16,17 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Controller
-/**
- * EmployeeController
- */
 public class EmployeeController {
-
   private final EmployeeRepository repository;
-
   @GetMapping("/")
   public String showList(Model model) {
     model.addAttribute("employees", repository.findAll());
     return "index";
   }
-
   @GetMapping("/add")
   public String addEmployee(@ModelAttribute Employee employee) {
     return "form";
   }
-
   @PostMapping("/process")
   public String process(
     @Validated @ModelAttribute Employee employee,
@@ -45,13 +38,11 @@ public class EmployeeController {
     repository.save(employee);
     return "redirect:/";
   }
-
   @GetMapping("/edit/{id}")
   public String editEmployee(@PathVariable Long id, Model model) {
     model.addAttribute("employee", repository.findById(id));
     return "form";
   }
-
   @GetMapping("/delete/{id}")
   public String deleteEmployee(@PathVariable Long id) {
     repository.deleteById(id);
